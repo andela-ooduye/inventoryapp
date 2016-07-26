@@ -10,8 +10,20 @@ def index(request):
 
 def results(request):
     search = request.POST['search']
-    #     skills contain search  OR  title contains search
-    #   query = Q(title=search ) | Q(category=search )
+
+    try:
+        advanced_search = request.POST['advanced_search']
+        if advanced_search == 'title':
+            books = Book.objects.raw("SELECT * FROM books_book WHERE title LIKE %s", [search])
+        else:
+            books = Book.objects.raw("SELECT * FROM books_book WHERE category LIKE %s", [search])
+
+        context = {'books' : books}
+        return render(request, 'books/index.html', context)
+
+    except Exception:
+        pass
+
     books = Book.objects.raw("SELECT * FROM books_book WHERE title LIKE %s OR category LIKE %s", [search, search])
     context = {'books' : books}
     return render(request, 'books/index.html', context)
