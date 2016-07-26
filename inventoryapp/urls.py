@@ -17,6 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 
 urlpatterns = [
-    url
+    url(r'^books/', books.url),
     url(r'^admin/', admin.site.urls),
 ]
