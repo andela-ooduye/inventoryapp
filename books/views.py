@@ -4,7 +4,7 @@ from .models import Book
 
 # Create your views here.
 def index(request):
-    books = Book.objects.order_by('id')[:5]
+    books = Book.objects.order_by('-id')[:5]
     context = {'books' : books}
     return render(request, 'books/index.html', context)
 

@@ -3,19 +3,18 @@ from .models import Book
 from django.core.urlresolvers import reverse
 
 # Create your tests here.
-'''
-class BookTest(TestCase):
-
-    def test_string_representation(self):
-        entry = Entry(title="Harry Potter")
-        self.assertEqual(str(entry), entry.title)
-'''
 
 def create_book(title, category, short_description):
     '''
     Creates a new book instance into the test datbase
     '''
     return Book.objects.create(title=title, category=category, short_description=short_description)
+
+class BookTest(TestCase):
+
+    def test_string_representation(self):
+        book = Book(title="Harry Potter")
+        self.assertEqual(str(book), 'Book object')
 
 class BookViewTests(TestCase):
 

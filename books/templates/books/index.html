@@ -17,43 +17,44 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Brand</a>
+          <a class="navbar-brand" href="#">Books</a>
         </div>
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid">
-      <h1>Books Inventory</h1>
-      <form class="" action="{% url 'books:results'%}" method="post">
-        {% csrf_token %}
-        <div class="col-lg-6">
-          <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Search by title or category">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="submit">Submit</button>
-            </span>
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-      </form>
-      <div class="row">
-        {% if books %}
-          {% for book in books %}
-          <div class="col-lg-offset-3">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="" style="text-align: center">Books Inventory</h1>
+        <form class="" action="{% url 'books:results'%}" method="post">
+          {% csrf_token %}
+          <div class="">
+            <div class="input-group">
+              <input type="text" class="form-control" name="search" placeholder="Search by title or category">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Submit</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </form>
+        <br/>
+        <div class="row">
+          {% if books %}
+            {% for book in books %}
             <div class="">
-              {{ book.title }}
-              <span class="pull-right">{{ book.category }}</span>
-              <p>
-                {{ book.short_description }}
-              </p>
+              <div class="">
+                {{ book.title }}
+                <span class="pull-right">{{ book.category }}</span>
+                <p>
+                  {{ book.short_description }}
+                </p>
+              </div>
+
             </div>
-
-          </div>
-          {% endfor %}
-        {% else %}
-          There are no books.
-        {% endif %}
+            {% endfor %}
+          {% else %}
+            There are no books.
+          {% endif %}
+        </div>
       </div>
-
-
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
