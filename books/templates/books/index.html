@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book | Inventory</title>
+  </head>
+  <body>
+    Books Inventory
+    <form class="" action="{% url 'books:results'%}" method="post">
+      {% csrf_token %}
+      <input type="text" name="search" placeholder="Search by title or category">
+      <input type="submit" value="Submit">
+    </form>
+
+    {% if books %}
+      {% for book in books %}
+        {{ book.title }}
+      {% endfor %}
+    {% else %}
+      There are no books.
+    {% endif %}
+  </body>
+</html>
